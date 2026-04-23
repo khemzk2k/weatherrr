@@ -7,10 +7,14 @@ import type {
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 const API_URL = import.meta.env.VITE_WEATHER_API_URL || 'https://api.openweathermap.org/data/2.5';
 
-class WeatherApiError extends Error {
-  constructor(message: string, public statusCode?: number) {
+
+  class WeatherApiError extends Error {
+  statusCode?: number;
+
+  constructor(message: string, statusCode?: number) {
     super(message);
-    this.name = 'WeatherApiError';
+    this.statusCode = statusCode;
+    this.name = "WeatherApiError";
   }
 }
 
